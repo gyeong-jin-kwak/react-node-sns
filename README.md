@@ -1,4 +1,4 @@
-# Reac NodeBird SNS
+# React NodeBird SNS
 
 ## 네가지 주체
 * Browser
