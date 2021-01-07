@@ -69,3 +69,6 @@
 
 ## git 
 * `rm .git/index.lock` 
+
+## npm
+* [npm trend 사이트](https://www.npmtrends.com/)
