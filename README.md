@@ -51,6 +51,8 @@
 * `pages` 폴더 만들기 : 이름이 꼭 **pages** 여야 한다. next는 pages를 인식
 * `Link` `import Link from 'next/link';`
 * **Live server** 의 기능 react 의 `hot loader` 기능도 next는 가지고 있음
+* 공통파일 처리는 `_app.js` 파일 내 
+* `<head></head>` 를 커스텀 하고 싶을 땐 `import Head from 'next/head'`
 
 ## eslint
 * `npm i eslint -D`
@@ -63,6 +65,7 @@
 
 ## style
 * `antd` `styled-components` `npm i antd styled-components @ant-design/icons`
+* `antd` 연결은 Next.js 의 공통파일에 적용되는 `_app.js`에 css 적용 (참고 _ antDesign 홈페이지 doc)
 
 ## git 
 * `rm .git/index.lock` 
