@@ -34,6 +34,7 @@
 * `npm i eslint-plugin-import -D`
 * `npm i eslint-plugin-react -D`
 * `npm i eslint-plugin-react-hooks -D`
+* `npm i antd styled-components @ant-design/icons`
 
 ## step 
 1. `npm init`
@@ -59,6 +60,9 @@
 * `package.json` 에서 확인 가능
 * `.eslintrc` 파일 생성
     * 맥에서는 숨김기능 / 확장자는 없음
+
+## style
+* `antd` `styled-components` `npm i antd styled-components @ant-design/icons`
 
 ## git 
 * `rm .git/index.lock` 
