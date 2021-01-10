@@ -67,6 +67,23 @@
 * `antd` `styled-components` `npm i antd styled-components @ant-design/icons`
 * `antd` 연결은 Next.js 의 공통파일에 적용되는 `_app.js`에 css 적용 (참고 _ antDesign 홈페이지 doc)
 
+### 인라인 스타일 주의점
+* `<div style={{ marginTop: '10' }}>`
+* 리렌더링 될 때마다 객체가 새로 생기며 불변성의 원칙으로 {}==={} false 의 결과 를 초래
+* styled-components를 사용해서 스타일을 입혀야함
+
+## 리렌더링
+* 함수 안에 있는 부분이 처음부터 끝까지 다시 실행
+* `useCallback` , `useMemo` 배열이 바뀌지 않는 이상 같은걸로 침 -> 바뀐것이 없는 것으로 처리
+* retrun 이 virtual Dom
+* 리턴 부분중 달라진 부분을 다시 그림
+* 리렌더링 될 때마다 객체가 새로 생기며 불변성의 원칙으로 {}==={} false 의 결과 를 초래
+
+## useCallback 과 useMemo 
+* 최적화 시켜주기 위해서는 함수 사용시 `useCallback` 항상 사용
+* `useCallback` 은 함수를 캐싱, `useMemo` 는 값을 캐싱
+* style `useMemo` 사용 예_ `const style = useMemo(()=>({marginTop: 10}), [])`
+
 ## git 
 * `rm .git/index.lock` 
 
