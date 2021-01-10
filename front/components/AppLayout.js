@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Menu } from 'antd';
+import { Menu, Input, Row, Col } from 'antd';
+
+const { Search } = Input;
 
 const AppLayout = ({ children }) => {
   return (
@@ -13,10 +15,25 @@ const AppLayout = ({ children }) => {
           <Link href="/profile"><a>프로필</a></Link>
         </Menu.Item>
         <Menu.Item>
+          <Search enterButton="Search" style={{ verticalAlign: 'middle' }} />
+        </Menu.Item>
+        <Menu.Item>
           <Link href="/signup"><a>회원가입</a></Link>
         </Menu.Item>
       </Menu>
-      {children}
+      
+      {/* 반응형/ xs: mobile, sm: tablet, md: desktop / #breakpoint / gutter: 간격 */}
+      <Row gutter={8}>
+        <Col xs={24} md={6}></Col>
+
+        <Col xs={24} md={12}>
+          {children}
+        </Col>
+
+        <Col xs={24} md={6}>
+          <a href="https://velog.io/@gyeong-jin-kwak" target="_blank" rel="norefferer noopener">Made by GyeongJinKwak</a>
+        </Col>
+      </Row>
     </div>
   )
 }
