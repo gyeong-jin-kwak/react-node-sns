@@ -12,7 +12,7 @@ const SearchInput = styled(Input.Search)`
 `;
 
 const AppLayout = ({ children }) => {
-  const {isLoggedIn, setIsLoggedIn} = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div>
@@ -34,7 +34,7 @@ const AppLayout = ({ children }) => {
       {/* 반응형/ xs: mobile, sm: tablet, md: desktop / #breakpoint / gutter: 간격 */}
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile/> : <LoginForm /> }
+          {isLoggedIn ? <UserProfile setIsLoggedIn = { setIsLoggedIn } /> : <LoginForm setIsLoggedIn = { setIsLoggedIn } /> }
         </Col>
 
         <Col xs={24} md={12}>
