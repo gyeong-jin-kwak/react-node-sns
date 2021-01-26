@@ -25,6 +25,21 @@
 * 리액트 -> 고객경험 중시한다면 리액트 그렇지 않아도 된다면 html, css
 * 관계 중심 -> sql / 로그 쌓일 때 , 관계가 없을 때 -> mongodb
 
+## 중앙저장소 역할 
+* React Context API
+    * 요청, 성공, 실패를 모두 구현해주어야 함
+    * `useEffect()` axios
+* Redux
+    * 장점: 원리가 간단해서 에러 확률이 적음 / 단점 : 코드량이 많음
+* MobX
+    * 장점 : 코드가 간단함 / 단점 : 에러추적이 어려움
+* graphQL 아폴로
+
+## 비동기 STEP
+1. 요청
+2. 성공 
+3. 실패
+
 ## install 
 * `npm init`
 * `npm i next` or `npm i next@9`
@@ -35,6 +50,8 @@
 * `npm i eslint-plugin-react -D`
 * `npm i eslint-plugin-react-hooks -D`
 * `npm i antd styled-components @ant-design/icons`
+* `npm i redux`
+* `npm i next-redux-wrapper` err `--legacy-peer-deps`
 
 ## step 
 1. `npm init`
@@ -89,3 +106,12 @@
 
 ## npm
 * [npm trend 사이트](https://www.npmtrends.com/)
+
+---
+
+## Redux
+* next Redux wrapper
+* store 폴더 생성 > configureStore.js 파일 생성
+* `npm i redux`
+* `npm i next-redux-wrapper --legacy-peer-deps`
+* store > app.js 설정 (redux 처럼 provider를 감싸주진 않는다)
