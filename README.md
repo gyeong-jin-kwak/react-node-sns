@@ -127,3 +127,8 @@
 * `npm install redux-devtools-extension`
 * store > configureStore.js
 
+### Redux 파일 쪼개기 
+* initialState 에 따라 user.js / post.js 파일 생성
+* 파일 모두 reducer 세팅 그대로
+* index.js 파일에서 reducerCombine을 사용해서 합쳐준 후
+* 기존 dispatch 한 부분 경로 변경해주기
