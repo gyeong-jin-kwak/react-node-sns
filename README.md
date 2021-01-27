@@ -53,6 +53,7 @@
 * `npm i redux`
 * `npm i next-redux-wrapper` err `--legacy-peer-deps`
 * `npm i react-redux`
+* `npm install redux-devtools-extension`
 
 ## step 
 1. `npm init`
@@ -116,4 +117,13 @@
 * `npm i redux`
 * `npm i next-redux-wrapper --legacy-peer-deps`
 * store > app.js 설정 (redux 처럼 provider를 감싸주진 않는다)
-* frong > reducers 폴더 생성 > index.js 파일 생성
+* front > reducers 폴더 생성 > index.js 파일 생성
+    * intialState
+    * action
+    * reducer
+* `npm i react-redux`
+* react-redux 의 `useSelector` (부모) 참고_ AppLayout.js
+* react-redux 의 `useDispatch` (자식 - 하위컴포넌트) 참고_ UserProfile.js
+* `npm install redux-devtools-extension`
+* store > configureStore.js
+
