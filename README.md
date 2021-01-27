@@ -52,6 +52,7 @@
 * `npm i antd styled-components @ant-design/icons`
 * `npm i redux`
 * `npm i next-redux-wrapper` err `--legacy-peer-deps`
+* `npm i react-redux`
 
 ## step 
 1. `npm init`
@@ -111,7 +112,8 @@
 
 ## Redux
 * next Redux wrapper
-* store 폴더 생성 > configureStore.js 파일 생성
+* front > store 폴더 생성 > configureStore.js 파일 생성
 * `npm i redux`
 * `npm i next-redux-wrapper --legacy-peer-deps`
 * store > app.js 설정 (redux 처럼 provider를 감싸주진 않는다)
+* frong > reducers 폴더 생성 > index.js 파일 생성
