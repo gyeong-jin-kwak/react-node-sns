@@ -132,3 +132,13 @@
 * 파일 모두 reducer 세팅 그대로
 * index.js 파일에서 reducerCombine을 사용해서 합쳐준 후
 * 기존 dispatch 한 부분 경로 변경해주기
+
+### 씨콜라이즈
+* reducers > post.js
+* 다른 정보들과 합쳐주는 naming은 첫글자가 대문자
+
+### 아이디를 index로 쓰지 않는 방법..
+* 배열에 아이디를 만든다..
+
+## [object object] 가 뜨고 있다는것 .. ?
+* 글자 문자열이 객체로 변환되고 있다는것
