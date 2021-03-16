@@ -54,6 +54,7 @@
 * `npm i next-redux-wrapper` err `--legacy-peer-deps`
 * `npm i react-redux`
 * `npm install redux-devtools-extension`
+* `npm i react-slick`
 
 ## step 
 1. `npm init`
