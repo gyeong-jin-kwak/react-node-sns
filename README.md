@@ -211,4 +211,10 @@ const gen = function*(){
     // LOG_IN action이 실행되면 logIn 함수를 실행
     ```
     * `take` 함수를 실행할때까지 기다림
+        * 일회용이기 때문에 무한인 `while(true){} = takeEvery` 를 사용
+        * but, 실수로 두번 클릭하는 것을 방지하기 위해 `takeLatest` 사용 -> 동시에 로딩중인것만 취소처리 (front에서만 인식하는것)
+        * takeLatest는 응답만 취소하는 것이기 때문에 요청이 두번 가는 것은 서버에서 연달아 오는 요청은 하나 지워야하는 코드가 있어야함
+        * ![응답취소 ㅇ/ 요청취소 x](./readme_img/saga_takeLatest.jpeg)
+        * `throttle`은 2초에 딱 한번만 함수를 실행할수 있게 하는것 요청보내는것까지 조절
+        * 보통 스크롤 이벤트에 `throttle` 을 많이 사용하고 `debounce` 는 검색결과 보낼때 많이 사용
     * `delay` `debounce` `takeLatest` `throttle` `takeEvery` `takeMaybe` `takeReading`
