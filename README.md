@@ -202,6 +202,7 @@ const gen = function*(){
 * sagaEffect
     * effect 앞에는 yield를 붙혀줌
     * `fork` 비동기 함수를 실행하는 것 - 바로 다음 것을 실행해버림 / `call` 동기 함수를 호출하는것 - 기다렸다가 실행함
+    * yield는 await와 비슷한 역할을 하고 fork는 await를 쓰지 않은 효과
     * `all` 동시에 실행될 수 있게 해줌
     ```
     function* watchLogin() {
