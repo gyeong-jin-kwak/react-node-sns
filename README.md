@@ -55,6 +55,9 @@
 * `npm i react-redux`
 * `npm install redux-devtools-extension`
 * `npm i react-slick`
+* `npm i redux-saga`
+* `npm i next-redux-saga`
+* `npm i axios`
 
 ## step 
 1. `npm init`
@@ -165,3 +168,46 @@
 * 클릭 두번 돌아갈때 thunk는 두번 요청이 가지만 Saga는 `takelatest` 첫번째것 무시
 * 스크롤 이벤트는 여러개가 한번에 가기때문에 비동기중에 스크롤이 발생하면 쓰로틀 (1초에 몇번까지만 허용해줌)
 * `delay` `throttle` `debounce`
+### saga start
+* generatore `function*` : 특별한 역활을 하는 함수
+    * `yield` 한번 하고 멈추고 또 실행하면 그 담음 것을 실행하고 멈춤
+    * generatore 은 중간점이 있는 함수 -> `done: false` / `done: true` done이 true가 될때까지
+    * 절대 멈추지 않는 generator
+```
+//yield
+const gen = fuction* (){
+    console.log(1); // gen() 1
+    yield;
+    console.log(2);// gen() 2
+    yield;
+    console.log(3);// gen() 3
+    yield 4;// gen() value:4
+}
+
+const generator = gen();
+
+generator.next(); //1
+generator.next(); //2
+```
+```
+// 절대멈추지 않는 generator , 중단점 하나 넣어두고 계속 불러주면 다음 코드가 실햄됨
+// 이벤트리쓰너로도 이용할 수 있음
+let i = 0;
+const gen = function*(){
+    while(true) {
+        yield i++;
+    }
+}
+```
+* sagaEffect
+    * effect 앞에는 yield를 붙혀줌
+    * `fork` 비동기 함수를 실행하는 것 - 바로 다음 것을 실행해버림 / `call` 동기 함수를 호출하는것 - 기다렸다가 실행함
+    * `all` 동시에 실행될 수 있게 해줌
+    ```
+    function* watchLogin() {
+        yield take('LOG_IN', logIn);
+    };
+    // LOG_IN action이 실행되면 logIn 함수를 실행
+    ```
+    * `take` 함수를 실행할때까지 기다림
+    * `delay` `debounce` `takeLatest` `throttle` `takeEvery` `takeMaybe` `takeReading`
