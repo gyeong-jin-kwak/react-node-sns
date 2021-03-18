@@ -41,9 +41,9 @@ export const initialState = {
   postAdded: false,
 }
 
-const ADD_POST = 'ADD_POST'
+const ADD_POST_REQUEST = 'ADD_POST_REQUEST'
 export const addPost = {
-  type: ADD_POST,
+  type: ADD_POST_REQUEST,
 }
 
 const dummyPost = {
@@ -59,7 +59,7 @@ const dummyPost = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST_REQUEST:
       return {
         ...state,
         mainPosts: [dummyPost, ...state.mainPosts],

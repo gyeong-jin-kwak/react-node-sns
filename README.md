@@ -218,3 +218,6 @@ const gen = function*(){
         * `throttle`은 2초에 딱 한번만 함수를 실행할수 있게 하는것 요청보내는것까지 조절
         * 보통 스크롤 이벤트에 `throttle` 을 많이 사용하고 `debounce` 는 검색결과 보낼때 많이 사용
     * `delay` `debounce` `takeLatest` `throttle` `takeEvery` `takeMaybe` `takeReading`
+
+    ## 데이터 흐름
+    로그인Form -> 로그인 / loginRequestAction -> saga LOG_IN_REQUEST 과 리듀서 LOG_IN_REQUEST 동시에 실행 -> saga에서 데이터를  LOG_IN_SUCCESS 로 액션 바뀜 -> reducer 에서 isLoggingIn, isLoggedIn 상태가 바뀜
