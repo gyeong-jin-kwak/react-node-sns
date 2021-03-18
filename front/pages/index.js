@@ -5,7 +5,7 @@ import PostCard from '../components/PostCard'
 import Head from 'next/head'
 
 const Home = () => {
-  const { isLoggedIn } = useSelector((state) => state.user)
+  const { logInDone } = useSelector((state) => state.user)
   const { mainPosts } = useSelector((state) => state.post)
 
   return (
@@ -14,7 +14,7 @@ const Home = () => {
         <title>NodeBird</title>
       </Head>
       <AppLayout>
-        {isLoggedIn && <PostForm />}
+        {logInDone && <PostForm />}
         {mainPosts.map((post, index) => (
           <PostCard key={post.id} post={post} />
         ))}

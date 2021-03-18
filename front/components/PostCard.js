@@ -18,6 +18,7 @@ const PostCard = ({ post }) => {
     setCommentFormOpened((prev) => !prev)
   }, [])
   const id = useSelector((state) => state.user.me?.id);
+  
   return (
     <div style={{ marginBottom: 20 }}>
       <Card

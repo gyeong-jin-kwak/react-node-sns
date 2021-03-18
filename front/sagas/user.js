@@ -1,4 +1,9 @@
 import { all, fork, delay, put, takeLatest } from "redux-saga/effects"
+import { 
+  LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_IN_REQUEST,
+  LOG_OUT_SUCCESS, LOG_OUT_FAILURE, LOG_OUT_REQUEST,
+  SIGN_UP_SUCCESS, SIGN_UP_FAILUR, SIGN_UP_REQUEST, SIGN_UP_FAILURE
+} from '../reducers/user';
 
 function logInAPI(data) {
   // 3 실제로 서버에 요청을 보냄
@@ -9,6 +14,9 @@ function logOutAPI() {
   return axios.post('/api/logout')
 }
 
+function signUpAPI() {
+  return axios.post('/api/signup')
+}
 //...............................................................................
 
 function* logIn(action) {
@@ -26,13 +34,13 @@ function* logIn(action) {
     //첫번쨰 자리가 함수고 그다음부터는 매개변수
 
     yield put({
-      type: 'LOG_IN_SUCCESS',
+      type: LOG_IN_SUCCESS,
       data: action.data,
     })
-  } catch(e) {
+  } catch(err) {
     yield put({
-      type: 'LOG_IN_FAILURE',
-      data: err.response.data,
+      type: LOG_IN_FAILURE,
+      error: err.response.data,
     })
   }
 }
@@ -43,13 +51,29 @@ function* logOut() {
     yield delay(1000);
 
     yield put({
-      type: 'LOG_OUT_SUCCESS',
+      type: LOG_OUT_SUCCESS,
       // data: result.data
     })
-  } catch(e) {
+  } catch(err) {
     yield put({
-      type: 'LOG_OUT_FAILURE',
-      data: err.response.data
+      type: LOG_OUT_FAILURE,
+      error: err.response.data
+    })
+  }
+}
+
+function* signUp() {
+  try {
+    // const result = yield call(signUpAPI);
+    yield delay(1000);
+
+    yield put({
+      type: SIGN_UP_SUCCESS,
+    })
+  } catch(err) {
+    yield put({
+      type: SIGN_UP_FAILURE,
+      error: err.response.data
     })
   }
 }
@@ -60,16 +84,21 @@ function* logOut() {
 function* watchLogIn() {
   // 1 LOG_IN 함수가 실행되면 logIn함수 호출
   // take 함수를 실행할때까지 기다림 - 일회용 때문에 while(true) 사용 = takeEvery = takeLatest 중복 클릭인식시 마지막 것만 인식 (동시에 로딩중인것만 취소처리 front에서만 그렇게 처리 readme 참고) 해서 서버에서 연달아 오는 요청 검증필요
-  yield takeLatest('LOG_IN_REQUEST', logIn);
+  yield takeLatest(LOG_IN_REQUEST, logIn);
 };
 
 function* watchLogout() {
-  yield takeLatest('LOG_OUT_REQUEST', logOut);
+  yield takeLatest(LOG_OUT_REQUEST, logOut);
 };
+
+function* watchSignup() {
+  yield takeLatest(SIGN_UP_REQUEST, signUp)
+}
 
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
     fork(watchLogout),
+    fork(watchSignup),
   ])
 }

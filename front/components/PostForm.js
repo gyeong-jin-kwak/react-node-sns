@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Form, Input, Button } from 'antd'
-import { addPost } from '../reducers/post'
+import { addPostRequestAction } from '../reducers/post'
 import styled from 'styled-components'
 
 const MyForm = styled(Form)`
@@ -20,7 +20,7 @@ const PostForm = () => {
     setText(e.target.value)
   }, [])
   const onSubmit = useCallback(() => {
-    dispatch(addPost)
+    dispatch(addPostRequestAction())
     setText('')
   }, [])
 
