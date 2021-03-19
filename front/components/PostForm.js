@@ -7,7 +7,7 @@ import useInput from '../hooks/useInput';
 
 const MyForm = styled(Form)`
   margin: 10px 0 20px;
-`
+`;
 
 const PostForm = () => {
   const dispatch = useDispatch();

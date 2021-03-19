@@ -61,6 +61,7 @@
 * `npm i -D babel-eslint eslint-config-airbnb eslint-plugin-import`
 * `npm i -D eslint-plugin-react-hooks`
 * `npm i -D eslint-plugin-jsx-a11y`
+* `npm i shortid`
 
 ## step 
 1. `npm init`
@@ -224,3 +225,18 @@ const gen = function*(){
 
     ## 데이터 흐름
     로그인Form -> 로그인 / loginRequestAction -> saga LOG_IN_REQUEST 과 리듀서 LOG_IN_REQUEST 동시에 실행 -> saga에서 데이터를  LOG_IN_SUCCESS 로 액션 바뀜 -> reducer 에서 isLoggingIn, isLoggedIn 상태가 바뀜
+
+    `PostForm.js` -> `addPost(text)` -> 리듀서 `addPost(data)` -> 사가 `data: action.data` -> 리듀서 
+
+    ## 더미 데이터를 만들때 사용하면 유용한 것들
+    * shortid
+    * faker
+
+## 불변성 유지 ..
+```
+const postIndex = state.mainPosts.findIndex((v)=> v.id === action.data.postId);
+const post = {...state.mainPosts[postIndex]};
+post.Comments = [dummyComment(action.data.content), ...post.Comments];
+const mainPosts = [...state.mainPosts];
+mainPosts[postIndex] = post;
+```
