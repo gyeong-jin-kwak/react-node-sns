@@ -11,27 +11,34 @@ export const initialState = {
       content: '첫번째 게시글 #해시태그 #익스프레스',
       Images: [
         {
+          id: shortId.generate(),
           src:
             'https://cdn.crowdpic.net/list-thumb/thumb_l_85118A2DC37D9ED8A6BE5CC45A853BB2.jpeg',
         },
         {
+          id: shortId.generate(),
           src:
             'https://cdn.pixabay.com/photo/2018/01/10/23/53/rabbit-3075088_960_720.png',
         },
         {
+          id: shortId.generate(),
           src:
             'https://funshop.akamaized.net/products/0000045272/vs_image800.jpg',
         },
       ],
       Comments: [
         {
+          id: shortId.generate(),
           User: {
+            id: shortId.generate(),
             nickname: 'gyjin',
           },
           content: '저도 단식중입니다..',
         },
         {
+          id: shortId.generate(),
           User: {
+            id: shortId.generate(),
             nickname: 'slimmer',
           },
           content: '헐.. 할만하신가요?',
@@ -45,6 +52,10 @@ export const initialState = {
   addPostDone: false,
   addPostError: null,
 
+  removePostLoading: false,
+  removePostDone: false,
+  removePostError: null,
+
   addCommentLoading: false,
   addCommentDone: false,
   addCommentError: null
@@ -53,6 +64,10 @@ export const initialState = {
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
+
+export const REMOVE_POST_REQUEST = 'REMOVE_POST_REQUEST';
+export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
+export const REMOVE_POST_FAILURE = 'REMOVE_POST_FAILURE';
 
 export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
@@ -73,8 +88,8 @@ export const addCommentRequestAction = (data) => ({
 });
 
 const dummyPost = (data) => ({
-  id: shortId.generate(),
-  content: data,
+  id: data.id,
+  content: data.content,
   User: {
     id: 1,
     nickname: 'gyeongjin',
@@ -143,6 +158,30 @@ const reducer = (state = initialState, action) => {
       ...state,
       addCommentLoading: false,
       addCommentError: action.error
+      }
+
+    case REMOVE_POST_REQUEST:
+      console.log('add-post-request')
+      return {
+        ...state,
+        removePostLoading: true,
+        removePostDone: false,
+        removePostError: null
+      }
+    case REMOVE_POST_SUCCESS:
+      return {
+        ...state,
+        removePostLoading: false,
+        removePostDone: true,
+
+        //
+        mainPosts: state.mainPosts.filter((v) => v.id !== action.data),
+      }
+    case REMOVE_POST_FAILURE: 
+      return {
+      ...state,
+      removePostLoading: false,
+      removePostError: action.error
       }
     default:
       return state
