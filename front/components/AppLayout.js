@@ -13,7 +13,7 @@ const SearchInput = styled(Input.Search)`
 
 const AppLayout = ({ children }) => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { logInDone } = useSelector((state) => state.user );
+  const { me } = useSelector((state) => state.user );
 
   return (
     <div>
@@ -35,7 +35,7 @@ const AppLayout = ({ children }) => {
       {/* 반응형/ xs: mobile, sm: tablet, md: desktop / #breakpoint / gutter: 간격 */}
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {logInDone ? <UserProfile /> : <LoginForm /> }
+          {me ? <UserProfile /> : <LoginForm /> }
         </Col>
 
         <Col xs={24} md={12}>

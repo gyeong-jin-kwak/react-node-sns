@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 // import ProtoTypes from 'prop-types';
@@ -18,21 +18,21 @@ const FormWrapper = styled(Form)`
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { logInLoading } = useSelector((state)=>state.user)
-  const [id, onChangeId] = useInput('');
+  const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
 
   const onSubmitFrom = useCallback(() => {
-    console.log(id, password);
+    console.log(email, password);
     // setIsLoggedIn(true);
-    dispatch(loginRequestAction({ id, password }));
-  }, [id, password]);
+    dispatch(loginRequestAction({ email, password }));
+  }, [email, password]);
 
   return (
     // React Form Library
     <FormWrapper onFinish={onSubmitFrom}>
       <div>
-        <label htmlFor="user-id">아이디</label> <br />
-        <Input name="user-id" value={id} onChange={onChangeId} required />
+        <label htmlFor="user-email">이메일</label> <br />
+        <Input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
       </div>
       <div>
         <label htmlFor="user-password">비밀번호</label> <br />

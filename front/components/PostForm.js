@@ -1,28 +1,38 @@
-import React, { useCallback, useRef, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Form, Input, Button } from 'antd'
-import { addPostRequestAction } from '../reducers/post'
-import styled from 'styled-components'
+import React, { useCallback, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Form, Input, Button } from 'antd';
+import { addPostRequestAction } from '../reducers/post';
+import styled from 'styled-components';
+import useInput from '../hooks/useInput';
 
 const MyForm = styled(Form)`
   margin: 10px 0 20px;
 `
 
 const PostForm = () => {
-  const dispatch = useDispatch()
-  const imageInput = useRef()
+  const dispatch = useDispatch();
+  const imageInput = useRef();
   const onClickImageUpload = useCallback(() => {
     imageInput.current.click()
-  }, [imageInput.current])
-  const { imagePaths } = useSelector((state) => state.post)
-  const [text, setText] = useState('')
-  const onChangeText = useCallback((e) => {
-    setText(e.target.value)
-  }, [])
+  }, [imageInput.current]);
+  const { imagePaths, addPostDone } = useSelector((state) => state.post);
+  
+  const [text, onChangeText, setText] = useInput('');
+  // const [text, setText] = useState('');
+
+  // const onChangeText = useCallback((e) => {
+  //   setText(e.target.value)
+  // }, [])
+
+  useEffect(()=>{
+    if(addPostDone) {
+      setText('');
+    }
+  }, [addPostDone]);
+
   const onSubmit = useCallback(() => {
-    dispatch(addPostRequestAction())
-    setText('')
-  }, [])
+    dispatch(addPostRequestAction(text));
+  }, [text])
 
   return (
     <MyForm encType="multipart/form-data" onFinish={onSubmit}>

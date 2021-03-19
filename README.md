@@ -58,6 +58,9 @@
 * `npm i redux-saga`
 * `npm i next-redux-saga`
 * `npm i axios`
+* `npm i -D babel-eslint eslint-config-airbnb eslint-plugin-import`
+* `npm i -D eslint-plugin-react-hooks`
+* `npm i -D eslint-plugin-jsx-a11y`
 
 ## step 
 1. `npm init`
