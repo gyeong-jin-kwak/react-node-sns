@@ -19,7 +19,7 @@ const FollowerList = ({ header, data }) => {
             renderItem={(item) => (
                 <List.Item style={{ marginTop: 20 }}>
                     <Card actions={[ <StopOutlined key="stop" /> ]}>
-                        <Card.Meta  description={item.name} />
+                        <Card.Meta  description={item.nickname} />
                     </Card>
                 </List.Item>
             )}
