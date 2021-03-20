@@ -254,3 +254,9 @@ return produce(state, (draft)=>{
 })
 ```
 * 추가해서 사용할 때에는 `unshift` 사용
+
+## 추천 
+* faker
+* Redux toolkit
+* placeholder.com 
+* lorempixel.com
