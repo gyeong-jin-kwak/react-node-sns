@@ -62,6 +62,7 @@
 * `npm i -D eslint-plugin-react-hooks`
 * `npm i -D eslint-plugin-jsx-a11y`
 * `npm i shortid`
+* `npm i immer`
 
 ## step 
 1. `npm init`
@@ -240,3 +241,15 @@ post.Comments = [dummyComment(action.data.content), ...post.Comments];
 const mainPosts = [...state.mainPosts];
 mainPosts[postIndex] = post;
 ```
+
+## immer 사용법
+* 리덕스뿐 아니라 리액트에서도 사용 가능
+* 훅버전은 `use-immer`
+```
+import produce from 'immer';
+
+return produce(state, (draft)=>{
+
+})
+```
+* 추가해서 사용할 때에는 `unshift` 사용
