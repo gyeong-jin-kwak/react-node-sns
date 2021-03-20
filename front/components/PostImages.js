@@ -24,12 +24,12 @@ const PostImages = ({ images }) => {
 
   if(images.length === 2){
     return (
-      <>
+      <div style={{ display: 'flex' }}>
         <img role="presentation" style={{ display: 'inline-block', width:"50%" }} src={images[0].src} alt={images[0].src} onClick={onZoom} />
         <img role="presentation" style={{ width:"50%" }} src={images[1].src} alt={images[1].src} onClick={onZoom} />
 
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
-      </>
+      </div>
     )
   }
 

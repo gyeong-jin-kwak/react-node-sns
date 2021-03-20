@@ -63,6 +63,7 @@
 * `npm i -D eslint-plugin-jsx-a11y`
 * `npm i shortid`
 * `npm i immer`
+* `npm i faker`
 
 ## step 
 1. `npm init`
