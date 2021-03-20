@@ -5,11 +5,22 @@ import NicknameEditForm from '../components/NicknameEditForm';
 import FollowingList from '../components/FollowingList';
 import FollowerList from '../components/FollowerList';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import Router from 'next/router';
 
 const Profile = () => {
   const { me } = useSelector((state)=>state.user);
   // const followingList = [{name: '아뜰리'}, {name: '럭키'}, {name: '몽실이'}, {name: '해피'},  {name: '영구'}];
   // const followerList = [{name: '릿쮸'}, {name: '몽자'}, {name: '해수어tv'}, {name: '햇님'}, {name: '샒의삶'}]
+  useEffect(() => {
+    if(!(me && me.id)) {
+      Router.push('/')
+    }
+  }, [me && me.id])
+
+  if (!me) {
+    return null;
+  }
 
   return (
     <>
