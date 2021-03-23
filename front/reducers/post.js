@@ -65,26 +65,47 @@ export const initialState = {
   addCommentError: null
 }
 
-initialState.mainPosts =initialState.mainPosts.concat(
-  Array(20).fill().map((v, i)=>({
+export const generateDummyPost = (number) => Array(number).fill().map((v, i)=>({
+  id: shortId.generate(),
+  User: {
     id: shortId.generate(),
+    nickname: faker.name.findName(),
+  },
+  content: faker.lorem.paragraph(),
+  Images: [
+    {src: faker.image.image()},
+    {src: faker.image.image()},
+  ],
+  Comments: [{
     User: {
       id: shortId.generate(),
       nickname: faker.name.findName(),
     },
-    content: faker.lorem.paragraph(),
-    Images: [
-      {src: faker.image.image()},
-      {src: faker.image.image()},
-    ],
-    Comments: [{
-      User: {
-        id: shortId.generate(),
-        nickname: faker.name.findName(),
-      },
-      content: faker.lorem.sentence()
-    }]
-  })),
+    content: faker.lorem.sentence()
+  }]
+}))
+
+initialState.mainPosts =initialState.mainPosts.concat(
+  generateDummyPost(10)
+  // Array(20).fill().map((v, i)=>({
+  //   id: shortId.generate(),
+  //   User: {
+  //     id: shortId.generate(),
+  //     nickname: faker.name.findName(),
+  //   },
+  //   content: faker.lorem.paragraph(),
+  //   Images: [
+  //     {src: faker.image.image()},
+  //     {src: faker.image.image()},
+  //   ],
+  //   Comments: [{
+  //     User: {
+  //       id: shortId.generate(),
+  //       nickname: faker.name.findName(),
+  //     },
+  //     content: faker.lorem.sentence()
+  //   }]
+  // })),
 );
 
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
