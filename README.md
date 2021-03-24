@@ -260,3 +260,8 @@ return produce(state, (draft)=>{
 * Redux toolkit
 * placeholder.com 
 * lorempixel.com
+* React virtualized
+    * 메모리 특히, 모바일의 경우 무한 스크롤 할때 나타날 수 있는 문제를 해결
+    * 인스타에서 사용 화면에 보이는 것만 유지 그리고 나머지는 메모리에만 있음
+    * 화면에 3-4개만 화면에 그려주고 나머지는 메모리에 담고있는
+

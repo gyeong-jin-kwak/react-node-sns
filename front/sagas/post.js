@@ -1,11 +1,16 @@
-import { all, fork, takeLatest, delay, put } from "redux-saga/effects"
+import { all, fork, takeLatest, delay, put, throttle } from "redux-saga/effects"
 import shortid from "shortid";
 import { 
   ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_POST_REQUEST, 
   REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, REMOVE_POST_REQUEST, 
-  ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, ADD_COMMENT_REQUEST, 
+  ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, ADD_COMMENT_REQUEST,
+  LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE, generateDummyPost
 } from "../reducers/post";
 import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from "../reducers/user";
+
+function loadPostsAPI(data) {
+  return axios.get('/api/posts', data)
+}
 
 function addPostAPI(data) {
   return axios.post('/api/post', data)
@@ -20,6 +25,24 @@ function addCommentAPI(data) {
 }
 
 //...............................................................................
+
+function* loadPosts(action) {
+  try {
+    // const result = yield call(loadPostsAPI, action.data);
+    yield delay(1000);
+
+    yield put({
+      type: LOAD_POSTS_SUCCESS,
+      data: generateDummyPost(10)
+      // data: result.data
+    })
+  }catch(e) {
+    yield put({
+      type: LOAD_POSTS_FAILURE,
+      data: err.response.data
+    })
+  }
+}
 
 function* addPost(action) {
   try {
@@ -91,24 +114,28 @@ function* addComment(action) {
 
 //...............................................................................
 
+function* watchLoadPosts() {
+  //throttle은 5초에 딱 한번만 함수를 실행할수 있게 하는것
+  yield throttle(5000, LOAD_POSTS_REQUEST, loadPosts);
+  // yield takeLatest(LOAD_POSTS_REQUEST, loadPosts);
+};
+
 function* watchAddPost() {
-  //throttle은 2초에 딱 한번만 함수를 실행할수 있게 하는것
   yield takeLatest(ADD_POST_REQUEST, addPost);
 };
 
 function* watchRemovePost() {
-  //throttle은 2초에 딱 한번만 함수를 실행할수 있게 하는것
   yield takeLatest(REMOVE_POST_REQUEST, removePost);
 };
 
 function* watchAddComment() {
-  //throttle은 2초에 딱 한번만 함수를 실행할수 있게 하는것
   yield takeLatest(ADD_COMMENT_REQUEST, addComment);
 };
 //...............................................................................
 
 export default function* postSaga() {
   yield all([
+    fork(watchLoadPosts),
     fork(watchAddPost),
     fork(watchRemovePost),
     fork(watchAddComment),
