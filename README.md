@@ -41,6 +41,7 @@
 3. 실패
 
 ## install 
+**front**
 * `npm init`
 * `npm i next` or `npm i next@9`
 * `npm i react react-dom`
@@ -64,6 +65,9 @@
 * `npm i shortid`
 * `npm i immer`
 * `npm i faker`
+---
+**back**
+* `npm i express`
 
 ## step 
 1. `npm init`
@@ -265,3 +269,43 @@ return produce(state, (draft)=>{
     * 인스타에서 사용 화면에 보이는 것만 유지 그리고 나머지는 메모리에만 있음
     * 화면에 3-4개만 화면에 그려주고 나머지는 메모리에 담고있는
 
+## 서버
+**front가 요청을 보내면 back이 응답을 해줌**
+**요청을 받으면 무조건 응답해야해고 그렇지 않으면 30초후 자동 실패 메시지게 뜸**
+**요청과 응답은 1:1 matching 응답을 두번 보내서는 안됨, res.end는 한번만 사용**
+
+1. back 폴더에서 `npm init` 으로 `package.json` 생성 (package name 과 author만 설정)
+    * font 와 back을 나누는 이유? front의 요청이 1000개로 부족하여 컴퓨터 두대를 나누어 요청을 받는 경우 front 와 back이 같이 있으면 컴퓨터를 늘릴때도 필요없는 back까지 복사해야함
+2. `app.js` 파일에 다음과 같은 코드 생성 `node app.js` 로 코드실행
+```
+const http = require('http');
+
+const server = http.createServer((req, res)=>{
+  console.log(req.url, req.method);
+  res.end('Hello Node!')
+});
+
+server.listen(3065, () => {
+  console.log('서버실행중')
+});
+// http.listen(3000);
+```
+3. `package.json` 에 `"dev": "",` script 정보 추가
+
+4. 기본 `node` 작성 방식, 복잡해지기때문에 `express` 사용
+```
+  if(req.method === 'GET') {
+    if(req.url === '/api/posts') {
+
+    }
+  } else if(req.method === 'POST') {
+    if(req.url === '/api/posts') {
+
+    }
+  } else if(req.method === 'DELETE') {
+    if(req.url === '/api/posts') {
+
+    }
+  }
+```
+`npm i express`
