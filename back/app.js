@@ -1,11 +1,56 @@
-const http = require('http');
+// const http = require('http');
+const express = require('express');
 
-const server = http.createServer((req, res)=>{
-  console.log(req.url, req.method);
-  res.write('<h1>Hello Node! 1</h1>');
-  res.write('<h2>Hello Node! 2</h2>');
-  res.write('<h3>Hello Node! 3</h3>');
-  res.end('Hello Node!');
+const app = express();
+
+// get, post, put .. 정확히 지키는 것을 restAPI 라고함
+// 시멘틱이랑 비슷한 의미
+// ex. 게시글 가져오면서 조회수를 1 올린다 와 같이 애매한것들은 'post'를 이용
+
+// app.get     -> 가져오기
+// app.post    -> 생성하기
+// app.put     -> 전체수정
+// app.delete  -> 제거
+// app.patch   -> 부분 수정 ex. 닉네임만 수정
+// app.options -> 찔러보기 ex. 요청 보낼수 있어?
+// app.head    -> 헤더만 가져오기
+
+app.get('/',  (req, res)=>{
+  res.send('hello express');
+});
+
+app.get('/api',  (req, res)=>{
+  res.send('hello api');
+});
+
+app.get('/api/posts',  (req, res)=>{
+  res.json([
+    {id: 1, content: 'hello1'},
+    {id: 2, content: 'hello2'},
+    {id: 3, content: 'hello3'},
+  ]);
+});
+
+// 생성
+app.post('/api/post',  (req, res)=>{
+  res.json({ id: 1, content: 'hello' });
+});
+
+// 생성
+app.delete('/api/post',  (req, res)=>{
+  res.json({ id: 1 });
+});
+
+app.listen(3065, () => {
+  console.log('서버실행중')
+});
+
+// const server = http.createServer((req, res)=>{
+//   console.log(req.url, req.method);
+//   res.write('<h1>Hello Node! 1</h1>');
+//   res.write('<h2>Hello Node! 2</h2>');
+//   res.write('<h3>Hello Node! 3</h3>');
+//   res.end('Hello Node!');
 
 
   // 프론트가 요청을 보내면 백은 응답을 해준다.
@@ -26,9 +71,9 @@ const server = http.createServer((req, res)=>{
 
   //   }
   // }
-});
+// });
 
-server.listen(3065, () => {
-  console.log('서버실행중')
-});
+// server.listen(3065, () => {
+//   console.log('서버실행중')
+// });
 // http.listen(3000);

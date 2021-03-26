@@ -261,13 +261,17 @@ return produce(state, (draft)=>{
 
 ## 추천 
 * faker
-* Redux toolkit
+* Redux toolkit 
+    * code 사용을 줄여준다 ex. switch문 사용하지 않아도 됨
+    * immer와 같이 사용하기에는 애매
 * placeholder.com 
 * lorempixel.com
 * React virtualized
     * 메모리 특히, 모바일의 경우 무한 스크롤 할때 나타날 수 있는 문제를 해결
     * 인스타에서 사용 화면에 보이는 것만 유지 그리고 나머지는 메모리에만 있음
     * 화면에 3-4개만 화면에 그려주고 나머지는 메모리에 담고있는
+* swagger
+    * restAPI 타협을 위한 문서화 툴
 
 ## 서버
 **front가 요청을 보내면 back이 응답을 해줌**
@@ -294,6 +298,7 @@ server.listen(3065, () => {
 
 4. 기본 `node` 작성 방식, 복잡해지기때문에 `express` 사용
 ```
+// 기본 node
   if(req.method === 'GET') {
     if(req.url === '/api/posts') {
 
@@ -309,3 +314,27 @@ server.listen(3065, () => {
   }
 ```
 `npm i express`
+```
+// express 사용
+const express = require('express');
+
+const app = express();
+
+app.listen(3065, () => {
+  console.log('서버실행중')
+})
+
+// 자주 사용
+
+// get, post, put .. 정확히 지키는 것을 restAPI 라고함
+// 시멘틱이랑 비슷한 의미
+// ex. 게시글 가져오면서 조회수를 1 올린다 와 같이 애매한것들은 'post'를 이용
+
+// app.get     -> 가져오기
+// app.post    -> 생성하기
+// app.put     -> 전체수정
+// app.delete  -> 제거
+// app.patch   -> 부분 수정 ex. 닉네임만 수정
+// app.options -> 찔러보기 ex. 요청 보낼수 있어?
+// app.head    -> 헤더만 가져오기
+```
