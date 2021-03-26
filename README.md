@@ -68,6 +68,8 @@
 ---
 **back**
 * `npm i express`
+* `npm i sequelize sequelize-cli`
+* `npm i mysql2`
 
 ## step 
 1. `npm init`
@@ -338,3 +340,18 @@ app.listen(3065, () => {
 // app.options -> 찔러보기 ex. 요청 보낼수 있어?
 // app.head    -> 헤더만 가져오기
 ```
+
+## MySQL
+* 마리아 db, postgram, 오라클(이 프로젝트와 호환 x)
+* community server, workbench 를 다운
+    * [mysql download](https://downloads.mysql.com/archives/community/)
+    * m1은 버전 8.0.22 와 호환 가능
+* `npm i sequelize sequelize-cli mysql2`
+    * sequelize 는 자바스크립트를 sql 언어로 바꿔주는 역할
+    * mysql2 는 mysql과 코드를 연결해주는 드라이버
+* `npx sequelize init`
+    * sequelize setting
+    * config, migrations, models 폴더 생김
+    * config -> config.json
+    * "password": "mysqlpassword", "database": "react-nodebird", "port": "3306",
+    
