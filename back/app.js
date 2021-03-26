@@ -1,5 +1,6 @@
 // const http = require('http');
 const express = require('express');
+const postRouter = require('./routes/post');
 
 const app = express();
 
@@ -19,11 +20,11 @@ app.get('/',  (req, res)=>{
   res.send('hello express');
 });
 
-app.get('/api',  (req, res)=>{
+app.get('/',  (req, res)=>{
   res.send('hello api');
 });
 
-app.get('/api/posts',  (req, res)=>{
+app.get('/posts',  (req, res)=>{
   res.json([
     {id: 1, content: 'hello1'},
     {id: 2, content: 'hello2'},
@@ -31,15 +32,18 @@ app.get('/api/posts',  (req, res)=>{
   ]);
 });
 
-// 생성
-app.post('/api/post',  (req, res)=>{
-  res.json({ id: 1, content: 'hello' });
-});
+app.use('/post', postRouter);
+// post가 prefix로 붙게 됨
 
-// 생성
-app.delete('/api/post',  (req, res)=>{
-  res.json({ id: 1 });
-});
+// // 생성
+// app.post('/post',  (req, res)=>{
+//   res.json({ id: 1, content: 'hello' });
+// });
+
+// // 삭제
+// app.delete('/post',  (req, res)=>{
+//   res.json({ id: 1 });
+// });
 
 app.listen(3065, () => {
   console.log('서버실행중')
