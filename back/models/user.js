@@ -20,6 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     collate: 'utf8_general_ci', // 한글 사용할 수 있음, 한글 저장
   });
 
-  User.associate = (db) => {};
+  User.associate = (db) => {
+    db.User.hasMany(db.Post);
+    db.User.hasMany(db.Comment);
+    db.User.belongsToMany(db.Post, {through: 'Like', as: 'Liked'}); // 좋아요 through를 통해 중간 테이블명 변경, as는 별칭
+    db.User.belongsToMany(db.User, {through: 'Follow', as: 'Followers', foreignKey: 'FollowingId'});
+    db.User.belongsToMany(db.User, {through: 'Follow', as: 'Followings', foreignKey: 'FollowerId'});// foreignKey는 같은 User이기 때문에 각 컬럼에 대한 다른 아이디를 만들어 주는것
+  };
   return User;
 }
