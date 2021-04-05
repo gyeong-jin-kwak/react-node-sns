@@ -354,4 +354,14 @@ app.listen(3065, () => {
     * config, migrations, models 폴더 생김
     * config -> config.json
     * "password": "mysqlpassword", "database": "react-nodebird", "port": "3306",
-    
+
+* model 만들기 
+    * 단수형 naming
+    * `module.exports = (sequelize, DataTypes) => {}` 모델의 기본 꼴
+    * model = mysql의 table
+    * model은 앞에 대문자, 단수형 = MySQL 앞에 소문자, 복수형으로 저장 됨
+    * 모델로 만든 것들은 서로 관계가 있음
+    * 관계들은 `associate`에다 적는것
+    * 기본적으로 낱개를 먼저 만들어두고 후에 관계 형성
+    * column 정보 추가
+
