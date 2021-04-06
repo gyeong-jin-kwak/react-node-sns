@@ -70,6 +70,7 @@
 * `npm i express`
 * `npm i sequelize sequelize-cli`
 * `npm i mysql2`
+* `npm i -D nodemon`
 
 ## step 
 1. `npm init`
@@ -371,3 +372,5 @@ app.listen(3065, () => {
 * 테이블 만들때 추천 
     * ERD 프로그램
     * DataGrip
+* `npm i -D nodemon` 설치해서 자동화 `nodemon app`
+* script에 nodemon app 추가 -> `npm run dev` 도 가능

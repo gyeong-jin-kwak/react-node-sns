@@ -52,7 +52,7 @@ app.use('/post', postRouter);
 // });
 
 app.listen(3065, () => {
-  console.log('서버실행중')
+  console.log('서버실행중!!!')
 });
 
 // const server = http.createServer((req, res)=>{
