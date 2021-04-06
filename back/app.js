@@ -1,8 +1,14 @@
 // const http = require('http');
 const express = require('express');
 const postRouter = require('./routes/post');
-
+const db = require('./models');
 const app = express();
+
+db.sequelize.sync()
+  .then(()=>{
+    console.log('db 연결 성공')
+  })
+  .catch(console.error);
 
 // get, post, put .. 정확히 지키는 것을 restAPI 라고함
 // 시멘틱이랑 비슷한 의미

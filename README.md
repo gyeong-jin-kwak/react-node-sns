@@ -364,4 +364,10 @@ app.listen(3065, () => {
     * 관계들은 `associate`에다 적는것
     * 기본적으로 낱개를 먼저 만들어두고 후에 관계 형성
     * column 정보 추가
-
+* model, associate를 모두 만든 후에 index.js에 등록, back의 app.js에 등록
+    * `node app`
+    * `npx sequelize db:create`
+    * `node app`
+* 테이블 만들때 추천 
+    * ERD 프로그램
+    * DataGrip
