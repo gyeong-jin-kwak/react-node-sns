@@ -1,7 +1,9 @@
 // const http = require('http');
 const express = require('express');
 const postRouter = require('./routes/post');
+const userRouter = require('./routes/user');
 const db = require('./models');
+const { urlencoded } = require('express')
 const app = express();
 
 db.sequelize.sync()
@@ -9,6 +11,10 @@ db.sequelize.sync()
     console.log('db 연결 성공')
   })
   .catch(console.error);
+
+// front 에서 받아온 data를 req.body에 넣어주는 역활
+app.use(express.json());
+app.use(express, urlencoded({extended: true}));
 
 // get, post, put .. 정확히 지키는 것을 restAPI 라고함
 // 시멘틱이랑 비슷한 의미
@@ -39,6 +45,7 @@ app.get('/posts',  (req, res)=>{
 });
 
 app.use('/post', postRouter);
+app.use('/user', userRouter);
 // post가 prefix로 붙게 됨
 
 // // 생성

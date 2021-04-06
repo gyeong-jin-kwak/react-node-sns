@@ -71,6 +71,7 @@
 * `npm i sequelize sequelize-cli`
 * `npm i mysql2`
 * `npm i -D nodemon`
+* `npm i bcrypt` // 암호 보안
 
 ## step 
 1. `npm init`
@@ -374,3 +375,16 @@ app.listen(3065, () => {
     * DataGrip
 * `npm i -D nodemon` 설치해서 자동화 `nodemon app`
 * script에 nodemon app 추가 -> `npm run dev` 도 가능
+* post, put, fetch 는 data 넘겨주기 가능
+* delete, get 은 데이터를 넘길 수 없음
+
+```
+// front 에서 받아온 data를 req.body에 넣어주는 역활
+app.use(express.json());
+app.use(express, urlencoded({extended: true}));
+```
+
+* 200 성공 
+* 300 리다이렉트
+* 400 클라이언트 에러
+* 500 서버에러
