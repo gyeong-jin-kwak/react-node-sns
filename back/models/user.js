@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(30),
       allowNull: false, // false는 필수 , true면 선택
     },
-    passworkd: {
+    password: {
       type: DataTypes.STRING(100), // password는 암호화 하기때문에 길이가 길 수 있음
       allowNull: false, // false는 필수 , true면 선택
     },

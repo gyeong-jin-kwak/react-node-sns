@@ -49,7 +49,7 @@ const Signup = () => {
 
     dispatch({
       type: SIGN_UP_REQUEST,
-      data: { email, password, nickname }
+      data: { email, nickname, password }
     })
     console.log(email, nickname, password);
   }, [email, password, passwordCheck, term]);

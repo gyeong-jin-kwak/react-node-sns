@@ -15,25 +15,11 @@ db.sequelize.sync()
   .catch(console.error);
 
 app.use(cors({
-  // origin: 'http://localhost:3000',
   origin: '*',
-  // credentials: false,
 }));
 // front 에서 받아온 data를 req.body에 넣어주는 역활
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-// get, post, put .. 정확히 지키는 것을 restAPI 라고함
-// 시멘틱이랑 비슷한 의미
-// ex. 게시글 가져오면서 조회수를 1 올린다 와 같이 애매한것들은 'post'를 이용
-
-// app.get     -> 가져오기
-// app.post    -> 생성하기
-// app.put     -> 전체수정
-// app.delete  -> 제거
-// app.patch   -> 부분 수정 ex. 닉네임만 수정
-// app.options -> 찔러보기 ex. 요청 보낼수 있어?
-// app.head    -> 헤더만 가져오기
 
 app.get('/',  (req, res)=>{
   res.send('hello express');
