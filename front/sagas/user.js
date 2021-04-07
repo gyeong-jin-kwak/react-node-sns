@@ -64,7 +64,7 @@ function* logOut() {
   } catch(err) {
     yield put({
       type: LOG_OUT_FAILURE,
-      error: err.response.data
+      error: err.response.data // back route-user send errMessage
     })
   }
 }

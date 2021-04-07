@@ -17,7 +17,7 @@ router.post('/', async (req, res, next)=>{ // POST /user/
     if(exUser) {
       // 403은 금지 
       return res.status(403).send('이미 사용중인 아이디입니다.');
-    };
+    }; // saga err.response.data
 
     const hashedPassword = await bcrypt.hash(req.body.password, 12); // 10-13 숫자가 높을수록 보안이 높아짐
     await User.create({
