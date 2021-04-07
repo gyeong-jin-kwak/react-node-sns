@@ -6,6 +6,7 @@ import {
   FOLLOW_REQUEST, FOLLOW_SUCCESS, FOLLOW_FAILURE,
   UNFOLLOW_REQUEST, UNFOLLOW_SUCCESS, UNFOLLOW_FAILURE
 } from '../reducers/user';
+import axios from 'axios';
 
 function logInAPI(data) {
   // 3 실제로 서버에 요청을 보냄
@@ -14,10 +15,6 @@ function logInAPI(data) {
 
 function logOutAPI() {
   return axios.post('/api/logout')
-}
-
-function signUpAPI(data) {
-  return axios.post('http://localhost:3065/user', data)
 }
 
 function followAPI() {
@@ -72,7 +69,12 @@ function* logOut() {
   }
 }
 
+function signUpAPI(data) {
+  return axios.post('http://localhost:3065/user', data)
+}
+
 function* signUp(action) {
+  console.log(action.data);
   try {
     const result = yield call(signUpAPI, action.data);
     console.log(result);

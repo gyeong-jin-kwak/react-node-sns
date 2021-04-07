@@ -1,9 +1,11 @@
 // const http = require('http');
 const express = require('express');
+const cors = require('cors');
+
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const db = require('./models');
-const { urlencoded } = require('express')
+
 const app = express();
 
 db.sequelize.sync()
@@ -12,9 +14,14 @@ db.sequelize.sync()
   })
   .catch(console.error);
 
+app.use(cors({
+  // origin: 'http://localhost:3000',
+  origin: '*',
+  // credentials: false,
+}));
 // front 에서 받아온 data를 req.body에 넣어주는 역활
 app.use(express.json());
-app.use(express, urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 // get, post, put .. 정확히 지키는 것을 restAPI 라고함
 // 시멘틱이랑 비슷한 의미
@@ -32,17 +39,17 @@ app.get('/',  (req, res)=>{
   res.send('hello express');
 });
 
-app.get('/',  (req, res)=>{
-  res.send('hello api');
-});
+// app.get('/',  (req, res)=>{
+//   res.send('hello api');
+// });
 
-app.get('/posts',  (req, res)=>{
-  res.json([
-    {id: 1, content: 'hello1'},
-    {id: 2, content: 'hello2'},
-    {id: 3, content: 'hello3'},
-  ]);
-});
+// app.get('/posts',  (req, res)=>{
+//   res.json([
+//     {id: 1, content: 'hello1'},
+//     {id: 2, content: 'hello2'},
+//     {id: 3, content: 'hello3'},
+//   ]);
+// });
 
 app.use('/post', postRouter);
 app.use('/user', userRouter);

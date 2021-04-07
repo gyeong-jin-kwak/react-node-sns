@@ -72,6 +72,7 @@
 * `npm i mysql2`
 * `npm i -D nodemon`
 * `npm i bcrypt` // 암호 보안
+* `npm i cors`
 
 ## step 
 1. `npm init`
