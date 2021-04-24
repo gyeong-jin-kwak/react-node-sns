@@ -1,12 +1,19 @@
 // const http = require('http');
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const passportConfig = require('./passport');
+const passport = require('passport')
+const dotenv = require('dotenv');
 
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const db = require('./models');
 
 const app = express();
+passportConfig();
+dotenv.config();
 
 db.sequelize.sync()
   .then(()=>{
@@ -20,6 +27,15 @@ app.use(cors({
 // front 에서 받아온 data를 req.body에 넣어주는 역활
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(session({
+  saveUninitialized: false,
+  resave: false,
+  secret: process.env.COOKIE_SECRET
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/',  (req, res)=>{
   res.send('hello express');

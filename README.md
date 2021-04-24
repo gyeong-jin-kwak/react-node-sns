@@ -73,6 +73,10 @@
 * `npm i -D nodemon`
 * `npm i bcrypt` // 암호 보안
 * `npm i cors`
+* `npm i passport passport-local` // 로그인 - passport-local 은 이메일 로그인
+* `npm i express-session`
+* `npm i cookie-parser`
+* `npm i dotenv`
 
 ## step 
 1. `npm init`
@@ -389,3 +393,14 @@ app.use(express, urlencoded({extended: true}));
 * 300 리다이렉트
 * 400 클라이언트 에러
 * 500 서버에러
+
+## 로그인 passport 
+* `npm i passport passport-local` // 로그인 - passport-local 은 이메일 로그인
+* app.js / directory passport / index.js / passport.js
+* 브라우저와 서버가 같은 정보를 가지고 있어야한다.
+* 실제 정보 대신에 랜덤한 정보를 보내주는 것을 '쿠키'라고 함 / 쿠키를 보내면 안전함 cxlhy
+* 서버쪽에서 통째로 들고있는것은 세션
+* 백엔드에는 쿠키랑 아이디만 저장 나머지는 서버 mySQL 서버에서 아이디로 복구하게 됨
+* 세션 secret 옵션 - 암호화 / 위험 db 비번도 하드코딩되어있음.. 보안을 위해서 `dotenv` 사용
+    * json파일은 dotenv를 사용하지 못하므로 js로 확장자 변경
+* .env는 보통 따로 관리 git에 올리지 않는다

@@ -4,6 +4,8 @@ import postSaga from './post';
 import userSaga from './user';
 //effect 앞에는 yield를 붙혀줌
 
+axios.defaults.baseURL = 'http://localhost:3065';
+
 // sagas -> user.js
 // function logInAPI(data) {
 //   // 3 실제로 서버에 요청을 보냄
