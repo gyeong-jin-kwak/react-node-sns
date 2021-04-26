@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 // import ProtoTypes from 'prop-types';
@@ -17,9 +17,15 @@ const FormWrapper = styled(Form)`
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { logInLoading } = useSelector((state)=>state.user)
+  const { logInLoading, logInError } = useSelector((state)=>state.user)
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
+
+  useEffect(()=>{
+    if(logInError) {
+      alert(logInError)
+    }
+  }, [logInError])
 
   const onSubmitFrom = useCallback(() => {
     console.log(email, password);
