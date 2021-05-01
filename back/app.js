@@ -55,6 +55,12 @@ app.get('/',  (req, res)=>{
 
 app.use('/post', postRouter);
 app.use('/user', userRouter);
+
+// 에러를 특별하게 처리하고 싶을때
+// app.use((err, req, res, next) => {
+
+// })
+
 // post가 prefix로 붙게 됨
 
 // // 생성
