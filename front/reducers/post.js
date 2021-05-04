@@ -198,7 +198,7 @@ const reducer = (state = initialState, action) => {
       case ADD_POST_SUCCESS:
         draft.addPostLoading = false;
         draft.addPostDone = true;
-        draft.mainPosts.unshift(dummyPost(action.data));
+        draft.mainPosts.unshift(action.data);
         break;
         // return {
         //   ...state,
@@ -230,7 +230,7 @@ const reducer = (state = initialState, action) => {
         // }
       case ADD_COMMENT_SUCCESS: 
         const post = draft.mainPosts.find((v)=> v.id === acrtion.data.postId);
-        post.Comments.unshift(dummyComment(action.data.content));
+        post.Comments.unshift(action.data.PostId);
         draft.addCommentLoading = false;
         draft.addCommentDone = true;
         break;
