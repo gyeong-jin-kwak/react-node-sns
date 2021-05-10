@@ -23,6 +23,7 @@ db.sequelize.sync()
 
 app.use(cors({
   origin: '*',
+  credentials: true,
 }));
 // front 에서 받아온 data를 req.body에 넣어주는 역활
 app.use(express.json());

@@ -9,19 +9,23 @@ import {
 import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from "../reducers/user";
 
 function loadPostsAPI(data) {
-  return axios.get('/api/posts', data)
+  return axios.get('/posts', data)
 }
 
 function addPostAPI(data) {
-  return axios.post(' /post', {content: data})
+  return axios.post('/post', { content: data }, {
+    withCredentials: true
+  })
 }
 
 function removePostAPI(data) {
-  return axios.post('/api/post', data)
+  return axios.post('/post', data)
 }
 
 function addCommentAPI(data) {
-  return axios.post(`/post/${data.postId}/comment`, data) //POST /post/1/comment
+  return axios.post(`/post/${data.postId}/comment`, data, {
+    withCredentials: true
+  }) //POST /post/1/comment
 }
 
 //...............................................................................

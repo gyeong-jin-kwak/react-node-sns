@@ -34,7 +34,8 @@ router.post('/:postId/comment', isLoggedIn, async (req, res, next)=>{ // POST /1
       PostId: req.params.postId,
       UserId: req.user.id,
     });
-    res.status(201).json(post);
+    
+    res.status(201).json(comment);
   } catch(error) {
     console.error(error);
     next(error); 
